@@ -2,6 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-light: #e4e4e4;
+  --color-dark: #1d1d1d;
+  --color-white: #fff;
+  --color-dark-2: #2e2e2e;
+
+  --color-header: var(--color-white);
+  --color-background: var(--color-light);
+  --color-main-text: var(--color-dark);
+}
+
+.dark {
+  --color-header: var(--color-dark-2);
+  --color-background: var(--color-dark);
+  --color-main-text: var(--color-light);
+}
+
+body {
+  @apply bg-background text-textMain transition-colors duration-300;
+}
+
+
 body {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
