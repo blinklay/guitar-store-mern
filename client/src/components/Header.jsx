@@ -1,5 +1,6 @@
 import Navigation from "./Navigation/Navigation";
 import Search from "./Search/Search";
+import ThemeButton from "./ThemeButton/ThemeButton";
 
 export default function Header() {
   return (
@@ -9,7 +10,7 @@ export default function Header() {
           <p>logo</p>
           <Search />
           <Navigation />
-          <p>theme</p>
+          <ThemeButton />
         </div>
       </div>
     </header>
