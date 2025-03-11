@@ -47,6 +47,7 @@ export default function AppRoutes() {
             }
           />
           <Route path={routes.SEARCH} element={<SearchPage />} />
+          <Route path={routes.SEARCH + "/:query"} element={<SearchPage />} />
           <Route
             path={routes.CURRENT_PRODUCT}
             element={<CurrentProductPage />}

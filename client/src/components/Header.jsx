@@ -1,4 +1,5 @@
 import Navigation from "./Navigation/Navigation";
+import Search from "./Search/Search";
 
 export default function Header() {
   return (
@@ -6,7 +7,7 @@ export default function Header() {
       <div className="container mx-auto">
         <div className="flex items-center gap-3 justify-between">
           <p>logo</p>
-          <p>search</p>
+          <Search />
           <Navigation />
           <p>theme</p>
         </div>

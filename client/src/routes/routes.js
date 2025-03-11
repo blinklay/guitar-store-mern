@@ -4,9 +4,9 @@ export const routes = {
   LOGIN: "/login",
   REGISTER: "/register",
   PRODUCTS: "/products",
-  CURRENT_PRODUCT: "/product/:id",
+  CURRENT_PRODUCT: "/product",
   PROFILE: "/profile",
-  SEARCH: "/search/:query",
+  SEARCH: "/search",
   CART: "/cart",
   FAVORITES: "/favorites"
 }
