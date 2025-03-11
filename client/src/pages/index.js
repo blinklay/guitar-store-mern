@@ -1,0 +1,10 @@
+export { default as HomePage } from "./HomePage";
+export { default as UsersPage } from "./UsersPage";
+export { default as CartPage } from "./CartPage";
+export { default as FavoritesPage } from "./FavoritesPage";
+export { default as SearchPage } from "./SearchPage";
+export { default as CurrentProductPage } from "./CurrentProductPage";
+export { default as ProductsPage } from "./ProductsPage";
+export { default as ProfilePage } from "./ProfilePage";
+export { default as RegisterPage } from "./RegisterPage";
+export { default as LoginPage } from "./LoginPage";
