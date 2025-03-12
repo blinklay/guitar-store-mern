@@ -7,7 +7,8 @@ export default {
       colors: {
         background: "var(--color-background)",
         textMain: "var(--color-main-text)",
-        header: "var(--color-header)"
+        header: "var(--color-header)",
+        accent: "#f4a60a"
       }
     },
   },

@@ -3,12 +3,12 @@ import Header from "./Header";
 
 export default function Layout() {
   return (
-    <div>
+    <>
       <Header />
 
-      <div className="container mx-auto">
+      <div className="container mx-auto my-10 px-3">
         <Outlet />
       </div>
-    </div>
+    </>
   );
 }
