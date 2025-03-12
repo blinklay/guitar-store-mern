@@ -9,7 +9,8 @@ export default {
         textMain: "var(--color-main-text)",
         header: "var(--color-header)",
         accent: "#f4a60a",
-        action: "#0e9ef1"
+        action: "#0e9ef1",
+        danger: "#eb0d0d"
       }
     },
   },
