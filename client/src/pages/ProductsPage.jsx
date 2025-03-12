@@ -1,4 +1,5 @@
 import Card from "../components/Card/Card";
+import Filter from "../components/Filter/Filter";
 import PageTitle from "../components/PageTitle";
 
 export default function ProductsPage() {
@@ -7,7 +8,7 @@ export default function ProductsPage() {
       <PageTitle>Каталог</PageTitle>
 
       <div className="flex gap-10 mt-5">
-        <div className="w-[40em] p-3">filters</div>
+        <Filter />
         <div className="grid grid-cols-4 gap-5">
           <Card />
           <Card />

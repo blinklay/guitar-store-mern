@@ -5,7 +5,7 @@
 :root {
   --color-light: #e4e4e4;
   --color-dark: #1d1d1d;
-  --color-white: #fff;
+  --color-white: #ffffff;
   --color-dark-2: #2e2e2e;
 
   --color-header: var(--color-white);
