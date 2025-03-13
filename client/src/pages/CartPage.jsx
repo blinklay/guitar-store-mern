@@ -1,5 +1,5 @@
 import ActionButton from "../components/ActionButton";
-import CartCard from "../components/Card/CartCard";
+import Card from "../components/Card/Card";
 import PageTitle from "../components/PageTitle";
 
 export default function CartPage() {
@@ -7,20 +7,24 @@ export default function CartPage() {
     <div>
       <PageTitle>Корзина</PageTitle>
 
-      <div className="flex gap-10 mt-5 items-start">
+      <div className="grid grid-cols-3 gap-5 mt-5 items-start">
         <div className="flex flex-col gap-5">
-          <CartCard />
-          <CartCard />
-          <CartCard />
+          <Card />
+          <Card />
+          <Card />
         </div>
+        <div className="bg-header p-3 rounded-md">
+          <table className="w-full border-b">
+            <tr>
+              <td className="font-bold text-xl">Ваша корзина</td>
+            </tr>
+            <tr>
+              <td>Товары (3)</td>
+              <td className="font-bold text-sm">83 989 Р</td>
+            </tr>
+          </table>
 
-        <div className="bg-header p-5 rounded-md flex flex-col justify-between">
-          <p className="text-xl font-bold">Оформление заказа</p>
-
-          <div>
-            <p className="font-bold mt-3">Итог: 33 000 Р</p>
-            <ActionButton>Перейти к оформлению</ActionButton>
-          </div>
+          <ActionButton>Оформить заказ</ActionButton>
         </div>
       </div>
     </div>
