@@ -4,3 +4,8 @@ export const ROLE = {
   ADMIN: "admin",
   MODER: "moder"
 }
+
+export const AUTH_FORM_TYPES = {
+  REGISTER: "register",
+  LOGIN: "login"
+}

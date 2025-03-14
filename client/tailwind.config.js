@@ -10,7 +10,8 @@ export default {
         header: "var(--color-header)",
         accent: "#f4a60a",
         action: "#0e9ef1",
-        danger: "#eb0d0d"
+        danger: "#eb0d0d",
+        "danger-darker": "rgb(85, 1, 1)"
       }
     },
   },
