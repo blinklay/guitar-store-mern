@@ -1,42 +1,22 @@
 import { AUTH_FORM_TYPES } from "../../constants";
 import { routes } from "../../routes/routes";
 import PageTitle from "../PageTitle";
-import Input from "./Input";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchema } from "./validationSchema";
-import DangerMessage from "./DangerMessage";
-import { useState } from "react";
-import CleanFieldButton from "./CleanFieldButton";
+import FormRow from "./FormRow";
 
 export default function AuthForm({ type, onSubmit }) {
-  const [formData, setFormData] = useState({
-    phone: "",
-    password: "",
-  });
-
   const {
+    watch,
+    setValue,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
   });
-
-  const onChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const onClick = (fieldName) => {
-    setFormData({
-      ...formData,
-      [fieldName]: "",
-    });
-  };
 
   return (
     <>
@@ -45,51 +25,21 @@ export default function AuthForm({ type, onSubmit }) {
       </PageTitle>
 
       <form className="mt-5" onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-col gap-2 mt-3">
-          <label htmlFor="phone" className="font-bold">
-            Номер телефона
-          </label>
-          <div className="relative w-full">
-            <Input
-              id="phone"
-              name="phone"
-              type="text"
-              placeholder="+7-999-999-99-99"
-              {...register("phone")}
-              onChange={onChange}
-              value={formData.phone}
-            />
-            {!!formData.phone.length && (
-              <CleanFieldButton onClick={() => onClick("phone")} />
-            )}
-          </div>
-          {errors.phone && (
-            <DangerMessage>{errors.phone.message}</DangerMessage>
-          )}
-        </div>
-
-        <div className="flex flex-col gap-2 mt-3">
-          <label htmlFor="password" className="font-bold">
-            Пароль
-          </label>
-          <div className="relative w-full">
-            <Input
-              name="password"
-              id="password"
-              type="password"
-              {...register("password")}
-              onChange={onChange}
-              value={formData.password}
-            />
-            {!!formData.password.length && (
-              <CleanFieldButton onClick={() => onClick("password")} />
-            )}
-          </div>
-
-          {errors.password && (
-            <DangerMessage>{errors.password.message}</DangerMessage>
-          )}
-        </div>
+        <FormRow
+          watch={watch}
+          setValue={setValue}
+          register={register}
+          fieldName="phone"
+          errors={errors}
+          placeholder="+7-999-999-99-99"
+        />
+        <FormRow
+          watch={watch}
+          setValue={setValue}
+          register={register}
+          fieldName="password"
+          errors={errors}
+        />
 
         <div className="flex gap-3 items-center mt-5">
           <button
