@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function BrandButton() {
+export default function BrandButton({ logo }) {
   return (
     <button
       aria-label="выбрать бренд"
@@ -8,7 +8,7 @@ export default function BrandButton() {
     >
       <img
         className="w-full object-contain h-full"
-        src="https://images.seeklogo.com/logo-png/5/1/fender-logo-png_seeklogo-53633.png"
+        src={logo}
         alt="логотип бренда"
       />
     </button>
