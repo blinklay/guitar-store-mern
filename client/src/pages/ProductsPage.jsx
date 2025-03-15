@@ -12,7 +12,7 @@ export default function ProductsPage() {
       (value, index, self) =>
         index === self.findIndex((t) => t.name === value.name)
     );
-  console.log(brands);
+  const prices = items.map((item) => item.price);
 
   return (
     <div className="container mx-auto">
@@ -21,7 +21,7 @@ export default function ProductsPage() {
       {loading && <div>Загрузка...</div>}
       {!loading && (
         <div className="flex gap-10 mt-5">
-          <Filter brands={brands} />
+          <Filter brands={brands} prices={prices}/>
           <div>
             <div className="grid grid-cols-4 gap-5">
               {items.map((item) => (
