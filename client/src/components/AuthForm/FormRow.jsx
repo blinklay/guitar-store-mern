@@ -10,13 +10,14 @@ export default function FormRow({
   placeholder = "",
   setValue,
   watch,
+  text,
 }) {
   const fieldValue = watch(fieldName);
 
   return (
     <div className="flex flex-col gap-2 mt-3">
       <label htmlFor={fieldName} className="font-bold">
-        Номер телефона
+        {text}
       </label>
       <div className="relative w-full">
         <Input

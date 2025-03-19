@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchema } from "./validationSchema";
 import FormRow from "./FormRow";
 
-export default function AuthForm({ type, onSubmit }) {
+export default function AuthForm({ type, onSubmit, isLoading }) {
   const {
     watch,
     setValue,
@@ -32,19 +32,22 @@ export default function AuthForm({ type, onSubmit }) {
           fieldName="phone"
           errors={errors}
           placeholder="+7-999-999-99-99"
+          text="Номер телефона"
         />
         <FormRow
           watch={watch}
           setValue={setValue}
           register={register}
           fieldName="password"
+          type="password"
           errors={errors}
+          text="Пароль"
         />
 
         <div className="flex gap-3 items-center mt-5">
           <button
             type="submit"
-            disabled={errors.phone || errors.password}
+            disabled={errors.phone || errors.password || isLoading}
             className="bg-accent py-2 px-4  font-bold rounded-md text-white"
           >
             {type === AUTH_FORM_TYPES.REGITER ? "Регистрация" : "Войти"}
