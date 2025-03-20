@@ -69,6 +69,20 @@ const authController = {
         message: "Не удалось авторизироваться!"
       })
     }
+  },
+  checkAuth(req, res) {
+    const { token } = req.cookies;
+
+    if (!token) {
+      return res.status(401).json({ message: "Не авторизован" });
+    }
+
+    try {
+      const decoded = jwt.verify(token, JWT_SECRET);
+      res.json({ user: decoded });
+    } catch (err) {
+      res.status(401).json({ message: "Неверный токен" });
+    }
   }
 }
 
