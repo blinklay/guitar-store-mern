@@ -1,9 +1,17 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Card from "../components/Card/Card";
 import PageTitle from "../components/PageTitle";
+import { logout } from "../feauters/actions/user.action";
 
 export default function ProfilePage() {
   const { username } = useSelector((state) => state.userState.user);
+  const loading = useSelector((state) => state.userState.loading);
+  const dispatch = useDispatch();
+
+  const onClick = () => {
+    dispatch(logout());
+  };
+
   return (
     <>
       <PageTitle>Профиль</PageTitle>
@@ -17,8 +25,11 @@ export default function ProfilePage() {
           {username}
         </div>
 
-        <button className="bg-danger-darker justify-end text-white font-medium px-4 py-2 rounded-md border border-danger ml-auto">
-          Выйти
+        <button
+          onClick={onClick}
+          className="bg-danger-darker justify-end text-white font-medium px-4 py-2 rounded-md border border-danger ml-auto"
+        >
+          {loading ? "Загрузка" : "Выйти"}
         </button>
       </div>
 
