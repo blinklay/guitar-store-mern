@@ -4,13 +4,7 @@ const initialState = {
   user: null,
   loading: false,
   error: null,
-  isAuthenticated: false,
-
-  cartLoading: false,
-  cartError: null,
-
-  favoritesLoading: false,
-  favoritesError: null,
+  isAuthChecked: false
 }
 
 export const userReducer = (state = initialState, action) => {
@@ -21,33 +15,10 @@ export const userReducer = (state = initialState, action) => {
       return { ...state, loading: true, error: null };
 
     case userTypes.FETCH_USER_SUCCESS:
-      return { ...state, loading: false, items: payload, isAuthenticated: true };
+      return { ...state, loading: false, user: payload, isAuthChecked: true };
 
     case userTypes.FETCH_USER_FAILURE:
-      return { ...state, loading: false, error: payload };
-
-    case userTypes.FETCH_CART_REQUEST:
-      return {
-        ...state,
-        cartLoading: true,
-      }
-
-    case userTypes.FETCH_CART_SUCCESS:
-      return {
-        ...state,
-        cartLoading: false,
-        user: {
-          ...state.user,
-          cart: payload
-        }
-      }
-
-    case userTypes.FETCH_CART_FAILURE:
-      return {
-        ...state,
-        cartLoading: false,
-        cartError: payload
-      }
+      return { ...state, loading: false, error: payload, isAuthChecked: true }
 
     case userTypes.USER_LOGOUT:
       return { ...initialState }

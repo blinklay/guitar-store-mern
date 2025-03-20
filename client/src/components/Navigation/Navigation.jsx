@@ -3,9 +3,10 @@ import NavigationItem from "./NavigationItem";
 import HeartIcon from "../Icons/HeartIcon";
 import CartIcon from "../Icons/CartIcon";
 import UserIcon from "../Icons/UserIcon";
+import { useSelector } from "react-redux";
 
 export default function Navigation() {
-  const isAuth = true;
+  const isAuth = !!useSelector((state) => state.userState.user);
 
   return (
     <nav>
