@@ -11,7 +11,9 @@ export const useAuth = (API_URL, navigatePath) => {
     setIsLoading(true)
 
     try {
-      const res = await axios.post(API_URL, data)
+      const res = await axios.post(API_URL, data, {
+        withCredentials: true,
+      })
       console.log(res);
 
       navigatePath ? navigate(navigatePath) : null
