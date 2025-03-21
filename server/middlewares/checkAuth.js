@@ -13,7 +13,7 @@ const checkAuth = (req, res, next) => {
 
     const decoded = jwt.verify(token, JWT_SECRET)
     req.user = decoded
-    next()
+    return next()
   } catch (e) {
     return res.status(403).json({
       message: "Нет доступа!"
