@@ -7,7 +7,7 @@ export default function Brand({ brands }) {
 
       <div className="mt-3 grid grid-cols-4 grid-rows-4 gap-3">
         {brands.map((item) => (
-          <BrandButton key={item.name} {...item} />
+          <BrandButton key={item._id} {...item} />
         ))}
       </div>
 

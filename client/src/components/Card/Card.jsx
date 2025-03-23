@@ -3,7 +3,7 @@ import { textSeparator } from "../../utils/textSeparator";
 import HeartIcon from "../Icons/HeartIcon";
 import ReactMarkdown from "react-markdown";
 
-export default function Card({ id, title, description, imagePreview, price }) {
+export default function Card({ id, title, description, imgUrl, price }) {
   const [cart, setCart] = useState([]);
   const [favorites, setFaavorites] = useState([]);
 
@@ -23,7 +23,7 @@ export default function Card({ id, title, description, imagePreview, price }) {
     <div className="flex flex-col justify-between bg-header rounded-lg overflow-hidden">
       <img
         className="object-cover h-[15em] w-full"
-        src={imagePreview}
+        src={imgUrl}
         alt="Изображение товара"
       />
 

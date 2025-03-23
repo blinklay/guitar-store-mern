@@ -1,11 +1,19 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ActionButton from "../components/ActionButton";
 import Card from "../components/Card/Card";
 import Filter from "../components/Filter/Filter";
 import PageTitle from "../components/PageTitle";
+import { useEffect } from "react";
+import { getProducts } from "../feauters/actions/products.action";
 
 export default function ProductsPage() {
   const { items, loading, error } = useSelector((state) => state.productsState);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
+
   const brands = items
     .map((item) => item.brand)
     .filter(
@@ -21,11 +29,11 @@ export default function ProductsPage() {
       {loading && <div>Загрузка...</div>}
       {!loading && (
         <div className="flex gap-10 mt-5">
-          <Filter brands={brands} prices={prices}/>
+          <Filter brands={brands} prices={prices} />
           <div>
             <div className="grid grid-cols-4 gap-5">
               {items.map((item) => (
-                <Card key={item.id} {...item} />
+                <Card key={item._id} {...item} />
               ))}
             </div>
 

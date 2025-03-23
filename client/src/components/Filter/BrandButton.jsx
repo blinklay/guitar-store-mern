@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function BrandButton({ logo }) {
+export default function BrandButton({ logoUrl }) {
   return (
     <button
       aria-label="выбрать бренд"
@@ -8,7 +8,7 @@ export default function BrandButton({ logo }) {
     >
       <img
         className="w-full object-contain h-full"
-        src={logo}
+        src={logoUrl}
         alt="логотип бренда"
       />
     </button>
