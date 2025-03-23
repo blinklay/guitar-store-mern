@@ -6,6 +6,7 @@ const authRouter = require("./routes/auth.router");
 const cookieParser = require("cookie-parser");
 const adminRouter = require("./routes/admin.routes");
 const productRouter = require("./routes/product.router");
+const userRouter = require("./routes/user.router");
 
 dotenv.config();
 
@@ -29,5 +30,6 @@ mongoose.connect(MONGO_URI)
 app.use("/auth", authRouter)
 app.use("/admin", adminRouter)
 app.use("/product", productRouter)
+app.use('/user', userRouter)
 
 app.listen(PORT, () => console.log("server start on PORT: " + PORT))
