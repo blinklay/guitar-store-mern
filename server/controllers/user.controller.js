@@ -5,7 +5,7 @@ const userController = {
   async addToCart(req, res) {
     try {
       const { username } = req.user;
-      const { productId } = req.body
+      const { productId } = req.params
 
       const prodcut = await ProductModel.findById(productId)
       if (!prodcut) {
@@ -19,7 +19,7 @@ const userController = {
       })
 
       res.status(200).json({
-        messae: "Товар добавлен в корзину!"
+        message: "Товар добавлен в корзину!"
       })
     } catch (e) {
       console.log(e);
