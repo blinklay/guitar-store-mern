@@ -2,21 +2,30 @@ import { useState } from "react";
 import { textSeparator } from "../../utils/textSeparator";
 import HeartIcon from "../Icons/HeartIcon";
 import ReactMarkdown from "react-markdown";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, removeFromCart } from "../../feauters/actions/cart.action";
 
-export default function Card({ id, title, description, imgUrl, price }) {
-  const [cart, setCart] = useState([]);
+export default function Card({ _id, title, description, imgUrl, price }) {
+  const cart = useSelector((state) => state.cartState.items);
+  const { adding, addError, removing, removeError } = useSelector(
+    (state) => state.cartState
+  );
+
+  const inCart = cart.map((item) => item._id).includes(_id);
+
+  const dispatch = useDispatch();
   const [favorites, setFaavorites] = useState([]);
 
   function handleCart() {
-    if (cart.includes(id))
-      setCart((prev) => prev.filter((item) => item !== id));
-    else setCart((prev) => [...prev, id]);
+    if (inCart) {
+      dispatch(removeFromCart(_id));
+    } else {
+      dispatch(addToCart(_id));
+    }
   }
 
   function handleFavorites() {
-    if (favorites.includes(id))
-      setFaavorites((prev) => prev.filter((item) => item !== id));
-    else setFaavorites((prev) => [...prev, id]);
+    // ...
   }
 
   return (
@@ -33,7 +42,7 @@ export default function Card({ id, title, description, imgUrl, price }) {
             {textSeparator(title, 20)}
           </p>
           <button onClick={handleFavorites}>
-            <HeartIcon active={favorites.includes(id)} />
+            <HeartIcon active={favorites.includes(_id)} />
           </button>
         </div>
 
@@ -43,19 +52,22 @@ export default function Card({ id, title, description, imgUrl, price }) {
 
         <div className="flex items-center gap-5 mt-3">
           <p className="text-accent font-medium text-xl">{price} Р</p>
-          {cart.includes(id) ? (
+          {inCart ? (
             <button
               onClick={handleCart}
               className="bg-transparent border border-accent py-2 px-3 text-[var(--color-main-text)] rounded-md font-medium"
             >
-              Удалить из корзины
+              {removing && "Удаление..."}
+              {!removing && " Удалить из корзины"}
             </button>
           ) : (
             <button
+              disabled={adding}
               onClick={handleCart}
               className="border border-transparent bg-accent py-2 px-3 text-white rounded-md font-medium"
             >
-              В корзину
+              {adding && "загрузка..."}
+              {!adding && "В корзину"}
             </button>
           )}
         </div>
