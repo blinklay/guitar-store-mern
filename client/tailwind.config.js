@@ -11,7 +11,9 @@ export default {
         accent: "#f4a60a",
         action: "#0e9ef1",
         danger: "#eb0d0d",
-        "danger-darker": "rgb(85, 1, 1)"
+        "danger-darker": "rgb(85, 1, 1)",
+        success: "#00ff00",
+        "success-darker": "#009933"
       }
     },
   },

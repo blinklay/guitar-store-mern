@@ -4,7 +4,7 @@ import DangerMessage from "../components/AuthForm/DangerMessage";
 import { AUTH_FORM_TYPES } from "../constants";
 import { useAuth } from "../hooks/useAuth";
 import { getUser } from "../feauters/actions/user.action";
-const LOGIN_API_URL = import.meta.env.VITE_API_URL + "/auth/login";
+const LOGIN_API_URL = "/auth/login";
 
 export default function LoginPage() {
   const { isLoading, error, handleForm } = useAuth(LOGIN_API_URL, "/");

@@ -26,6 +26,7 @@ export default function ProfilePage() {
         </div>
 
         <button
+          disabled={loading}
           onClick={onClick}
           className="bg-danger-darker justify-end text-white font-medium px-4 py-2 rounded-md border border-danger ml-auto"
         >
