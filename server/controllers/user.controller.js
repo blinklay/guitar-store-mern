@@ -1,78 +1,58 @@
-const ProductModel = require("../models/Product.model");
-const UserModel = require("../models/User.model");
+const handleError = require("../helpers/handlerError");
+const { updateUserList, getUserList, deleteUserList } = require("../helpers/userHelper");
 
 const userController = {
-  async addToCart(req, res) {
+  async getFavorites(req, res) {
     try {
-      const { username } = req.user;
-      const { productId } = req.params
-
-      const prodcut = await ProductModel.findById(productId)
-      if (!prodcut) {
-        return res.status(404).json({
-          message: "Товар не найден!"
-        })
-
-      }
-      await UserModel.findOneAndUpdate({ username }, {
-        $push: { cart: productId }
-      })
-
-      res.status(200).json({
-        message: "Товар добавлен в корзину!"
-      })
+      const favorites = await getUserList(req.user.username, "favorites")
+      res.status(200).json({ favorites })
     } catch (e) {
-      console.log(e);
-      res.status(500).json({
-        message: "Не удалось добавить товар!"
-      })
+      handleError(res, e, "Не удалось получить корзину!")
     }
   },
 
   async getCart(req, res) {
     try {
-      const { username } = req.user
-      const user = await UserModel.findOne({ username }).select('cart').populate("cart")
-
-      if (!user) {
-        return res.status(404).json({
-          message: "Пользователь не найден!"
-        })
-      }
-
-      res.status(200).json({ cart: user.cart })
+      const cart = await getUserList(req.user.username, "cart")
+      res.status(200).json({ cart })
     } catch (e) {
-      console.log(e);
-      res.status(500).json({
-        message: "Не удалось получить корзину!"
-      })
+      handleError(res, e, "Не удалось получить корзину!")
+    }
+  },
+
+  async addToFavorites(req, res) {
+    try {
+      const message = await updateUserList(req.user.username, req.params.productId, "favorites")
+      res.status(200).json({ message })
+    } catch (e) {
+      handleError(res, e, "Не удалось добавить в избранное!")
+    }
+  },
+
+  async addToCart(req, res) {
+    try {
+      const message = await updateUserList(req.user.username, req.params.productId, "cart")
+      res.status(200).json({ message })
+    } catch (e) {
+      handleError(res, e, "Не удалось добавить товар!")
+    }
+  },
+
+  async removeFromFavorites(req, res) {
+    try {
+      const message = await deleteUserList(req.user.username, req.params.productId, "favorites")
+      res.status(200).json({ message })
+    } catch (e) {
+      handleError(res, e, "Не удалось удалить товар!")
     }
   },
 
   async removeFromCart(req, res) {
     try {
-      const { username } = req.user;
-      const { productId } = req.params;
-
-      const product = await ProductModel.findById(productId)
-
-      if (!product) {
-        return res.status(404).json({ message: "Товар не найден!" })
-      }
-
-      await UserModel.findOneAndUpdate({ username },
-        { $pull: { cart: productId } },
-        { new: true }
-      ).populate('cart')
-
-      res.status(200).json({
-        message: "Товар удален из корзины!"
-      })
+      const message = await deleteUserList(req.user.username, req.params.productId, "cart")
+      res.status(200).json({ message })
     } catch (e) {
-      console.log(e);
-      res.status(500).json({
-        message: "Не удалось удалить товар!"
-      })
+      handleError(res, e, "Не удалось удалить товар!")
     }
   }
 }
