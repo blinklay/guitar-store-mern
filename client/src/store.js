@@ -4,12 +4,13 @@ import { thunk } from "redux-thunk"
 import { userReducer } from "./feauters/reducers/userReducer"
 import { cartReducer } from "./feauters/reducers/cartReducer"
 import { globalAlertReducer } from "./feauters/reducers/globalAlertReducer"
+import { favoritesReducer } from "./feauters/reducers/favoritesReducer"
 
 const reducer = combineReducers({
   productsState: productReducer,
   userState: userReducer,
   cartState: cartReducer,
-  // favoritesState: favoritesReducer,
+  favoritesState: favoritesReducer,
   globalAlertState: globalAlertReducer
 })
 

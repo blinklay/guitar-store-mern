@@ -1,20 +1,24 @@
-import { useState } from "react";
 import { textSeparator } from "../../utils/textSeparator";
 import HeartIcon from "../Icons/HeartIcon";
 import ReactMarkdown from "react-markdown";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "../../feauters/actions/cart.action";
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from "../../feauters/actions/favorites.action";
 
 export default function Card({ _id, title, description, imgUrl, price }) {
   const cart = useSelector((state) => state.cartState.items);
+  const favorites = useSelector((state) => state.favoritesState.items);
   const { adding, addError, removing, removeError } = useSelector(
     (state) => state.cartState
   );
 
   const inCart = cart.map((item) => item._id).includes(_id);
+  const inFavorites = favorites.map((item) => item._id).includes(_id);
 
   const dispatch = useDispatch();
-  const [favorites, setFaavorites] = useState([]);
 
   function handleCart() {
     if (inCart) {
@@ -25,7 +29,11 @@ export default function Card({ _id, title, description, imgUrl, price }) {
   }
 
   function handleFavorites() {
-    // ...
+    if (inFavorites) {
+      dispatch(removeFromFavorites(_id));
+    } else {
+      dispatch(addToFavorites(_id));
+    }
   }
 
   return (
@@ -42,7 +50,7 @@ export default function Card({ _id, title, description, imgUrl, price }) {
             {textSeparator(title, 20)}
           </p>
           <button onClick={handleFavorites}>
-            <HeartIcon active={favorites.includes(_id)} />
+            <HeartIcon active={inFavorites} />
           </button>
         </div>
 
