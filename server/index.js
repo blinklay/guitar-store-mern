@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const adminRouter = require("./routes/admin.routes");
 const productRouter = require("./routes/product.router");
 const userRouter = require("./routes/user.router");
+const searchRouter = require("./routes/search.router");
 
 dotenv.config();
 
@@ -31,5 +32,6 @@ app.use("/auth", authRouter)
 app.use("/admin", adminRouter)
 app.use("/product", productRouter)
 app.use('/user', userRouter)
+app.use('/search', searchRouter)
 
 app.listen(PORT, () => console.log("server start on PORT: " + PORT))
