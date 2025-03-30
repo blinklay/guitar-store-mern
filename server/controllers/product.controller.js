@@ -1,5 +1,7 @@
+const handleError = require("../helpers/handlerError")
 const BrandModel = require("../models/Brand.model")
 const ProductModel = require("../models/Product.model")
+const validateProduct = require("../validations/productValidator")
 
 const prodcutController = {
   async addProdcut(req, res) {
@@ -30,10 +32,23 @@ const prodcutController = {
         message: "Новый новар добавлен!"
       })
     } catch (e) {
-      console.log(e);
-      res.status(500).json({
-        message: "Не удалось добавить товар!"
+      handleError(res, e, "Не удалось добавить товар!")
+    }
+  },
+
+  async getCurrentProduct(req, res) {
+    try {
+      const { productId } = req.params;
+      const product = await validateProduct(productId)
+      const brand = await BrandModel.findById(product.brand)
+      res.status(200).json({
+        product: {
+          ...product,
+          brand
+        }
       })
+    } catch (error) {
+      handleError(res, error, "Не удалось получить товар!")
     }
   },
 
@@ -45,10 +60,7 @@ const prodcutController = {
         products
       })
     } catch (e) {
-      console.log(e);
-      res.status(500).json({
-        message: "Не удалось получить список товаров!"
-      })
+      handleError(res, e, "Не удалось получить товары!")
     }
   }
 }
