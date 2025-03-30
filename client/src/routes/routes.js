@@ -4,7 +4,7 @@ export const routes = {
   LOGIN: "/login",
   REGISTER: "/register",
   PRODUCTS: "/products",
-  CURRENT_PRODUCT: "/product",
+  CURRENT_PRODUCT: "/product/:productId",
   PROFILE: "/profile",
   SEARCH: "/search",
   CART: "/cart",
