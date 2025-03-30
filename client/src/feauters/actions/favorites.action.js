@@ -8,7 +8,6 @@ export const getFavorites = () => {
     dispatch({ type: favoritesTypes.FETCH_FAVORITES_REQUEST })
     try {
       const favorites = await axiosInstance.get("/user/favorites")
-      console.log(favorites.data);
 
       dispatch({ type: favoritesTypes.FETCH_FAVORITES_SUCCESS, payload: favorites.data.favorites })
     } catch (e) {

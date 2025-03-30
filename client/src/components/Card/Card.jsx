@@ -7,6 +7,8 @@ import {
   addToFavorites,
   removeFromFavorites,
 } from "../../feauters/actions/favorites.action";
+import CartButton from "../CartButton";
+import { Link } from "react-router-dom";
 
 export default function Card({ _id, title, description, imgUrl, price }) {
   const cart = useSelector((state) => state.cartState.items);
@@ -46,9 +48,12 @@ export default function Card({ _id, title, description, imgUrl, price }) {
 
       <div className="p-3">
         <div className="flex items-center gap-3 justify-between">
-          <p className="font-medium mt-3 text-xl uppercase">
+          <Link
+            to={"/product/" + _id}
+            className="font-medium mt-3 text-xl uppercase"
+          >
             {textSeparator(title, 20)}
-          </p>
+          </Link>
           <button onClick={handleFavorites}>
             <HeartIcon active={inFavorites} />
           </button>
@@ -69,14 +74,10 @@ export default function Card({ _id, title, description, imgUrl, price }) {
               {!removing && " Удалить из корзины"}
             </button>
           ) : (
-            <button
-              disabled={adding}
-              onClick={handleCart}
-              className="border border-transparent bg-accent py-2 px-3 text-white rounded-md font-medium"
-            >
+            <CartButton disabled={adding} onClick={handleCart}>
               {adding && "загрузка..."}
               {!adding && "В корзину"}
-            </button>
+            </CartButton>
           )}
         </div>
       </div>

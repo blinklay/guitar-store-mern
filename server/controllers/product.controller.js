@@ -43,7 +43,7 @@ const prodcutController = {
       const brand = await BrandModel.findById(product.brand)
       res.status(200).json({
         product: {
-          ...product,
+          ...product._doc,
           brand
         }
       })
