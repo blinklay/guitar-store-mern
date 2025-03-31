@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose")
+const { USER_ROLES } = require("../constants")
 
 const UserSchema = new Schema({
   phoneNumber: {
@@ -17,7 +18,7 @@ const UserSchema = new Schema({
   },
   role: {
     type: String,
-    enum: ["user", "moderator", "admin"],
+    enum: USER_ROLES,
     default: "user"
   },
   cart: [

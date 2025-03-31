@@ -1,3 +1,4 @@
+const handleError = require("../helpers/handlerError")
 const UserModel = require("../models/User.model")
 
 const adminController = {
@@ -8,10 +9,7 @@ const adminController = {
         users
       })
     } catch (e) {
-      console.log(e);
-      res.status(500).json({
-        message: "Не удалось получить список пользователей!"
-      })
+      handleError(res, e, "Не удалось получить список пользователей!")
     }
   }
 }
