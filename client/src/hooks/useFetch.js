@@ -3,11 +3,10 @@ import axiosInstance from "../utils/axiosInstance";
 
 export const useFetch = (url, initialState = null) => {
   const [data, setData] = useState(initialState);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const fetchData = useCallback(async () => {
-    setIsLoading(true);
     setError(null);
     const controller = new AbortController();
     const signal = controller.signal;

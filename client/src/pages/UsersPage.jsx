@@ -1,51 +1,57 @@
-import SearchIcon from "../components/Icons/SearchIcon";
+import { useDispatch } from "react-redux";
 import PageTitle from "../components/PageTitle";
+import { useFetch } from "../hooks/useFetch";
+import { useNavigate } from "react-router-dom";
+import { showAlert } from "../feauters/actions/globalAlert.action";
+import { GLOBAL_ALERT_TIMEROUT, GLOBAL_ALERT_TYPES } from "../constants";
+import SearchUserForm from "../components/SearchUserForm";
 
 export default function UsersPage() {
+  const { data, error, isLoading } = useFetch("/admin/users", {});
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleForm = (formData) => {
     const searchUserValue = formData.get("user");
     console.log(searchUserValue);
   };
 
+  if (isLoading) return <div>Загрузка...</div>;
+  if (error) {
+    navigate("/");
+    dispatch(
+      showAlert(error, GLOBAL_ALERT_TIMEROUT, GLOBAL_ALERT_TYPES.DANGER)
+    );
+  }
   return (
     <div>
       <PageTitle>Список пользователей</PageTitle>
-
-      <form
-        action={handleForm}
-        className="relative w-1/3 mt-5 rounded-sm overflow-hidden"
-      >
-        <input
-          type="text"
-          name="user"
-          placeholder="Найти пользователя"
-          className="bg-header py-2 px-4 w-full pe-[3em]"
-        />
-        <button className="absolute right-3 top-1/2 transform -translate-y-1/2">
-          <SearchIcon />
-        </button>
-      </form>
-
+      <SearchUserForm action={handleForm} />
       <table className="w-full border-collapse border border-gray-300 shadow-lg mt-5">
         <thead>
           <tr className="bg-header">
-            <th className="border border-gray-300 px-4 py-2 text-left">
-              Имя пользователя
-            </th>
-            <th className="border border-gray-300 px-4 py-2 text-left">
-              Телефон
-            </th>
-            <th className="border border-gray-300 px-4 py-2 text-left">Роль</th>
+            {["Имя пользователя", "Телефон", "Роль"].map((title) => (
+              <th
+                key={title}
+                className="border border-gray-300 px-4 py-2 text-left"
+              >
+                {title}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className="border border-gray-300 px-4 py-2">username</td>
-            <td className="border border-gray-300 px-4 py-2">
-              +7 951 036 17 84
-            </td>
-            <td className="border border-gray-300 px-4 py-2">admin</td>
-          </tr>
+          {data?.users.map((user) => (
+            <tr key={user._id}>
+              <td className="border border-gray-300 px-4 py-2">
+                {user.username}
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                {user.phoneNumber}
+              </td>
+              <td className="border border-gray-300 px-4 py-2">{user.role}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
