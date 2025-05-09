@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const { COOKIE_LIFETIME } = require("../constants");
 const JWT_SECRET = process.env.JWT_SECRET
 
-const UserController = {
+const AuthController = {
   async register(req, res) {
     try {
       const errors = validationResult(req)
@@ -22,15 +22,15 @@ const UserController = {
       }
 
       const hashPassword = bcrypt.hashSync(password, 7)
-      const user = new UserModel({
+      const Auth = new UserModel({
         email,
         password: hashPassword
       })
 
-      await user.save()
+      await Auth.save()
       res.status(200).json({
         message: "Пользователь зарегестрирован!",
-        user
+        Auth
       })
     } catch (e) {
       console.error(e);
@@ -40,19 +40,19 @@ const UserController = {
   async login(req, res) {
     try {
       const { email, password } = req.body;
-      const user = await UserModel.findOne({ email })
+      const Auth = await UserModel.findOne({ email })
 
-      if (!user) {
+      if (!Auth) {
         return res.status(400).json({ message: "Почта или пароль введены не верно!" })
       }
 
-      const isValidPassword = bcrypt.compareSync(password, user.password)
+      const isValidPassword = bcrypt.compareSync(password, Auth.password)
       if (!isValidPassword) {
         return res.status(400).json({ message: "Почта или пароль введены не верно!" })
       }
 
       const token = jwt.sign({
-        id: user._id
+        id: Auth._id
       }, JWT_SECRET, { expiresIn: "7d" })
 
 
@@ -64,9 +64,9 @@ const UserController = {
 
       res.status(200).json({
         message: "Успешная авторизация!",
-        user: {
-          id: user._id,
-          email: user.email
+        Auth: {
+          id: Auth._id,
+          email: Auth.email
         }
       })
     } catch (e) {
@@ -76,4 +76,4 @@ const UserController = {
   }
 }
 
-module.exports = UserController
+module.exports = AuthController
