@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Fender Stratocaster Standard",
+    "description": "Легендарная электрогитара с классическим звучанием.",
+    "price": 75000,
+    "oldPrice": 82000,
+    "count": 5,
+    "imgUrl": "/images/fender-strat.jpg"
+  },
+  {
+    "title": "Gibson Les Paul Studio",
+    "description": "Мощный звук и идеален для рока и металла.",
+    "price": 120000,
+    "oldPrice": 130000,
+    "count": 3,
+    "imgUrl": "/images/gibson-lespaul.jpg"
+  },
+  {
+    "title": "Ibanez RG550",
+    "description": "Гитара для тех, кто ценит скорость и агрессию.",
+    "price": 68000,
+    "oldPrice": 72000,
+    "count": 7,
+    "imgUrl": "/images/ibanez-rg550.jpg"
+  },
+  {
+    "title": "Yamaha Pacifica 112V",
+    "description": "Отличный выбор для новичков и практики.",
+    "price": 33000,
+    "oldPrice": null,
+    "count": 10,
+    "imgUrl": "/images/yamaha-pacifica.jpg"
+  },
+  {
+    "title": "Schecter Hellraiser C-1",
+    "description": "Зверь для тяжелой музыки с EMG-звукоснимателями.",
+    "price": 95000,
+    "oldPrice": 99000,
+    "count": 4,
+    "imgUrl": "/images/schecter-hellraiser.jpg"
+  },
+  {
+    "title": "ESP LTD EC-1000",
+    "description": "Профессиональный инструмент по доступной цене.",
+    "price": 105000,
+    "oldPrice": 115000,
+    "count": 2,
+    "imgUrl": "/images/esp-ltd.jpg"
+  },
+  {
+    "title": "PRS SE Custom 24",
+    "description": "Гибрид классики и современного удобства.",
+    "price": 88000,
+    "oldPrice": 95000,
+    "count": 6,
+    "imgUrl": "/images/prs-se.jpg"
+  },
+  {
+    "title": "Jackson Dinky JS22",
+    "description": "Бюджетный инструмент с отличной эргономикой.",
+    "price": 28000,
+    "oldPrice": 32000,
+    "count": 9,
+    "imgUrl": "/images/jackson-js22.jpg"
+  },
+  {
+    "title": "Harley Benton SC-550",
+    "description": "Приятный звук и внешний вид за небольшую цену.",
+    "price": 24000,
+    "oldPrice": null,
+    "count": 12,
+    "imgUrl": "/images/harley-sc550.jpg"
+  },
+  {
+    "title": "Cort X100",
+    "description": "Простой и удобный инструмент для начинающих.",
+    "price": 21000,
+    "oldPrice": 25000,
+    "count": 8,
+    "imgUrl": "/images/cort-x100.jpg"
+  }
+]

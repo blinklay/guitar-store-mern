@@ -2,7 +2,8 @@ require('dotenv').config()
 const express = require('express')
 const cookieParser = require('cookie-parser');
 const mongoose = require("mongoose")
-const UserRouter = require('./routes/User.router')
+const UserRouter = require('./routes/User.router');
+const ProductRouter = require('./routes/Product.router');
 const PORT = process.env.PORT
 const MONGO_URI = process.env.MONGO_URI
 
@@ -18,6 +19,7 @@ mongoose.connect(MONGO_URI)
 app.listen(PORT, () => console.log("Server start!"))
 
 app.use("/auth", UserRouter)
+app.use("/products", ProductRouter)
 
 app.on("error", (err) => {
   console.error("Server Error: ", err);
