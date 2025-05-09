@@ -6,6 +6,15 @@ const { COOKIE_LIFETIME } = require("../constants");
 const JWT_SECRET = process.env.JWT_SECRET
 
 const AuthController = {
+  logout(req, res) {
+    try {
+      res.clearCookie("token")
+      res.status(200).json({ message: "Успешный выход из аккаунта!" })
+    } catch (e) {
+      console.error(e);
+      res.status(500).json({ message: "Не удалось выйти из аккаунта!" })
+    }
+  },
   async register(req, res) {
     try {
       const errors = validationResult(req)

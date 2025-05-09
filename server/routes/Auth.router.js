@@ -5,5 +5,6 @@ const AuthRouter = express.Router()
 
 AuthRouter.post("/register", registerValidator, AuthController.register)
 AuthRouter.post("/login", AuthController.login)
+AuthRouter.post("/logout", AuthController.logout)
 
 module.exports = AuthRouter
