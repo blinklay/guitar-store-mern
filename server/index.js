@@ -7,11 +7,17 @@ const AuthRouter = require('./routes/Auth.router');
 const UserRouter = require('./routes/User.router');
 const PORT = process.env.PORT
 const MONGO_URI = process.env.MONGO_URI
+const CLIENT_URL = process.env.CLIENT_URL
+const cors = require("cors")
 
 const app = express()
 
 app.use(express.json())
 app.use(cookieParser());
+app.use(cors({
+  origin: CLIENT_URL,
+  credentials: true
+}));
 
 mongoose.connect(MONGO_URI)
   .then(() => console.log("DB start!"))
