@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import CartButton from "./CartButton";
 
 export default function ProductItem({
+  _id,
   title,
   price,
   lastProductElementRef,
@@ -23,7 +24,7 @@ export default function ProductItem({
       </Link>
       <span className="opacity-[0.5]">Электрогитара</span>
       <p className="text-2xl font-medium">{price}</p>
-      <CartButton />
+      <CartButton id={_id} />
     </li>
   );
 }
