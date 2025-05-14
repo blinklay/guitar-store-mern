@@ -22,7 +22,7 @@ export default function ProductItem({
       <Link to="/product/:currentId" className="text-xl fond-bold text-center">
         {title}
       </Link>
-      <span className="opacity-[0.5]">Электрогитара</span>
+      <span className="text-[#00000080]">Электрогитара</span>
       <p className="text-2xl font-medium">{price}</p>
       <CartButton id={_id} />
     </li>
