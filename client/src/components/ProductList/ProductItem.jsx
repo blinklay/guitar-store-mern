@@ -1,15 +1,24 @@
 import { Link } from "react-router-dom";
 import CartButton from "./CartButton";
 
-export default function ProductItem({ title, price }) {
+export default function ProductItem({
+  title,
+  price,
+  lastProductElementRef,
+  index,
+  length,
+}) {
   return (
-    <li className="flex flex-col items-center gap-2">
+    <li
+      className="flex flex-col items-center gap-2 justify-between"
+      ref={length === index + 1 ? lastProductElementRef : null}
+    >
       <img
         className="w-full h-[20em] object-contain"
         src="https://www.muztorg.ru/files/71f/4fg/ajf/fgg/gkw/48w/sco/wk4/g/71f4fgajffgggkw48wscowk4g.jpg"
         alt="Изображение товара"
       />
-      <Link to="/product/:currentId" className="text-xl fond-bold">
+      <Link to="/product/:currentId" className="text-xl fond-bold text-center">
         {title}
       </Link>
       <span className="opacity-[0.5]">Электрогитара</span>

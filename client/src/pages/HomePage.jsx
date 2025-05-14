@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductList from "../components/ProductList/ProductList";
 import VideoBoard from "../components/VideoBoard";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import axiosInstance from "../axios";
 
