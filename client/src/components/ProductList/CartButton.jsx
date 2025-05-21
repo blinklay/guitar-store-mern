@@ -1,7 +1,7 @@
 import { useCart } from "../../hooks/useCart";
 
 export default function CartButton({ id }) {
-  const [inCart, add, remove] = useCart();
+  const { inCart, add, remove } = useCart();
 
   return (
     <button

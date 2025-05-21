@@ -13,5 +13,13 @@ export function useCart() {
     dispatch({ type: "REMOVE_FROM_CART", payload: id });
   }
 
-  return [inCart, add, remove]
+  function openCart() {
+    dispatch({ type: "SET_CART_STATUS", payload: true });
+  }
+
+  function closeCart() {
+    dispatch({ type: "SET_CART_STATUS", payload: false });
+  }
+
+  return { inCart, add, remove, openCart, closeCart }
 }

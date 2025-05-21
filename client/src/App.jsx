@@ -5,6 +5,7 @@ import ProductsPage from "./pages/ProductsPage";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import CurrentProductPage from "./pages/CurrentProductPage";
 
 export default function App() {
   const [storageCart, setStorageCart] = useLocalStorage("cart", []);
@@ -26,6 +27,7 @@ export default function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
+        <Route path="/product/:currentId" element={<CurrentProductPage />} />
       </Route>
     </Routes>
   );

@@ -1,5 +1,6 @@
 const ininitalState = {
-  products: []
+  products: [],
+  isCartOpen: false
 }
 
 export const cartReducer = (state = ininitalState, action) => {
@@ -10,6 +11,12 @@ export const cartReducer = (state = ininitalState, action) => {
       return {
         ...state,
         products: payload
+      }
+
+    case "SET_CART_STATUS":
+      return {
+        ...state,
+        isCartOpen: payload
       }
 
     case "ADD_TO_CART":
