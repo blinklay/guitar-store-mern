@@ -1,7 +1,20 @@
+import { useSelector } from "react-redux";
 import { useCart } from "../../hooks/useCart";
+import { useEffect } from "react";
+import axiosInstance from "../../axios";
+import { useState } from "react";
+import CartList from "./CartList";
 
 export default function CartModal() {
   const { closeCart } = useCart();
+  const cart = useSelector((state) => state.cart.products);
+  const [loadedCart, setLoadedCart] = useState([]);
+
+  useEffect(() => {
+    axiosInstance
+      .post(`/products/byIds`, { ids: cart })
+      .then((res) => setLoadedCart(res.data.products));
+  }, [cart]);
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-end bg-black/50 backdrop-blur-sm">
@@ -15,7 +28,7 @@ export default function CartModal() {
 
         <h2 className="text-2xl font-bold mb-4">Ваша корзина</h2>
 
-        <ul className="flex flex-col gap-4">{/* Мап по корзине */}</ul>
+        <CartList items={loadedCart} />
 
         <div className="mt-6 flex flex-col gap-3">
           <button className="bg-black text-white py-3 rounded-md text-lg hover:bg-gray-800 transition">
