@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import CartButton from "./CartButton";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function ProductItem({
   _id,
@@ -8,6 +9,7 @@ export default function ProductItem({
   lastProductElementRef,
   index,
   length,
+  imgUrl,
 }) {
   return (
     <li
@@ -16,7 +18,7 @@ export default function ProductItem({
     >
       <img
         className="w-full h-[20em] object-contain"
-        src="https://www.muztorg.ru/files/71f/4fg/ajf/fgg/gkw/48w/sco/wk4/g/71f4fgajffgggkw48wscowk4g.jpg"
+        src={`${apiUrl}${imgUrl}`}
         alt="Изображение товара"
       />
       <Link to="/product/:currentId" className="text-xl fond-bold text-center">
