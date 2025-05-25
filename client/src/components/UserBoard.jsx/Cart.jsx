@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import CartIcon from "../components/Icons/CartIcon";
-import { useCart } from "../hooks/useCart";
+import CartIcon from "../Icons/CartIcon";
+import { useCart } from "../../hooks/useCart";
 
 export default function Cart() {
   const { openCart } = useCart();

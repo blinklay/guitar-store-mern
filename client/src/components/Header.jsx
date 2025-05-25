@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import UserBoard from "../UserBoard.jsx/UserBoard";
+import UserBoard from "./UserBoard.jsx/UserBoard";
 import Navigaion from "./Navigaion";
+import AuthModal from "./AuthModal/AuthModal";
 
 const headerClasses = {
   relative: "bg-white p-5 flex items-center justify-between",
@@ -11,6 +12,7 @@ const headerClasses = {
 export default function Header() {
   const triggerRef = useRef(null);
   const [isHeaderLeave, setIsHeaderLeave] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -46,7 +48,9 @@ export default function Header() {
         className={isHeaderLeave ? headerClasses.fixed : headerClasses.relative}
       >
         <Navigaion />
-        <UserBoard />
+        <UserBoard isAuthOpen={isAuthOpen} setIsAuthOpen={setIsAuthOpen} />
+
+        {isAuthOpen && <AuthModal setIsAuthOpen={setIsAuthOpen} />}
       </div>
     </>
   );
